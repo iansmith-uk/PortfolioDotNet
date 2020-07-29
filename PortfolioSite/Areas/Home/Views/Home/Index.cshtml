@@ -1,0 +1,59 @@
+﻿@model UnifiedUserModel
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+
+
+<!-- Header - set the background image for the header in the line below -->
+<header class="py-5 bg-image-full" style="background-image: url('/images/header-tech.jpg');">
+    <img class=" img-fluid d-block mx-auto rounded" width="200" src="/images/face.png" alt="">
+</header>
+
+<!-- Content section -->
+<section class="py-5">
+    <div class="container">
+        <h4>Contact Information</h4>
+        <p>&nbsp;<i class="fas fa-male"></i>&nbsp;&nbsp;@Model.InfoModel.Name</p>
+        <p><i class="fas fa-envelope-open-text"></i>&nbsp;<a href="mailto:@Model.InfoModel.Email">@Model.InfoModel.Email</a></p>
+        <p><i class="fas fa-street-view"></i>&nbsp;@Model.InfoModel.Location</p>
+        <p></p>
+    </div>
+</section>
+
+<!-- Content section -->
+<section class="py-5">
+    <div class="container">
+        <h1>Portfolio</h1>
+        <div class="row">
+            @foreach (var item in Model.PortfolioModels)
+            {
+
+                
+                    string imageBase64Data =
+                    Convert.ToBase64String(item.image);
+                    string imageDataURL =
+                    string.Format("data:image/jpg;base64,{0}",
+                    imageBase64Data);
+                
+
+                <div class="card mr-2 mb-2" style="width: 20rem;">
+                    <img class="card-img-top cropped" src="@imageDataURL" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">@item.name</h5>
+                        <p class="card-text">@item.description</p>
+                        @if(item.testingURL != null)
+                        {
+                            <a href="@item.testingURL" class="btn btn-primary">Test It</a>
+                        }
+                        @if(item.codeURL != null)
+                        {
+                            <a href="@item.codeURL" class="btn btn-info">View the Code</a>
+                        }
+                    </div>
+                </div>
+                    }
+            </div>
+        
+        </div>
+</section>

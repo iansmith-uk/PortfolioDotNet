@@ -1,0 +1,53 @@
+﻿@model PortfolioSite.Models.PortfolioModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>PortfolioModel</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create" enctype="multipart/form-data">
+            <input type="hidden" asp-for="uID" value="@User.Identity.Name" />
+            <div class="form-group">
+                <label asp-for="image" class="control-label"></label>
+                <input type="file" name="Image" id="Imageinput" accept="image/*">
+                <span asp-validation-for="image" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="name" class="control-label"></label>
+                <input asp-for="name" class="form-control" />
+                <span asp-validation-for="name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="description" class="control-label"></label>
+                <input asp-for="description" class="form-control" />
+                <span asp-validation-for="description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="testingURL" class="control-label"></label>
+                <input asp-for="testingURL" class="form-control" />
+                <span asp-validation-for="testingURL" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="codeURL" class="control-label"></label>
+                <input asp-for="codeURL" class="form-control" />
+                <span asp-validation-for="codeURL" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
